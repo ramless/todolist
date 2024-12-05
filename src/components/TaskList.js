@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import TaskContext from "../context/TaskContext";
 
+import '../styles/components/task-list.scss'
+
 const TaskList = ({ filter }) => {
     const { tasks, dispatch } = useContext(TaskContext);
     const [editingTaskId, setEditingTaskId] = useState(null);
@@ -25,34 +27,43 @@ const TaskList = ({ filter }) => {
     };
 
     return (
-        <ul>
+        <ul className={'todo-task-list'}>
             {filteredTasks.map(task => (
                 <li key={task.id}>
                     {editingTaskId === task.id ? (
                         <>
-                            <input
-                                type="text"
-                                value={newText}
-                                onChange={(e) => setNewText(e.target.value)}
-                            />
-                            <button onClick={() => saveEdit(task.id)}>Сохранить</button>
-                            <button onClick={() => setEditingTaskId(null)}>Отмена</button>
+                            <div className={'mb-2'}>
+                                <input
+                                    type="text"
+                                    className={'form-control'}
+                                    value={newText}
+                                    onChange={(e) => setNewText(e.target.value)}
+                                />
+                            </div>
+                            <div className={'todo-task-list__buttons'}>
+                                <button className={'badge badge-pill bg-secondary mr-1'}
+                                        onClick={() => saveEdit(task.id)}>Save
+                                </button>
+                                <button className={'badge bg-dark'} onClick={() => setEditingTaskId(null)}>Cancel
+                                </button>
+                            </div>
                         </>
                     ) : (
                         <>
-              <span
-                  onClick={() => dispatch({ type: "TOGGLE_TASK", payload: task.id })}
-                  style={{
-                      textDecoration: task.completed ? "line-through" : "none",
-                      cursor: "pointer",
-                  }}
-              >
-                {task.text}
-              </span>
-                            <button onClick={() => handleEdit(task)}>Редактировать</button>
-                            <button onClick={() => dispatch({ type: "DELETE_TASK", payload: task.id })}>
-                                Удалить
-                            </button>
+                        <div className={'todo-task-list__text ' + (task.completed ? "done" : "undone")}
+                             onClick={() => dispatch({type: "TOGGLE_TASK", payload: task.id})}
+                        >
+                            {task.text}
+                        </div>
+                            <div className={'todo-task-list__buttons'}>
+                                <button className={'badge badge-pill bg-secondary mr-1'}
+                                        onClick={() => handleEdit(task)}>Edit
+                                </button>
+                                <button className={'badge bg-dark'}
+                                        onClick={() => dispatch({type: "DELETE_TASK", payload: task.id})}>
+                                    Delete
+                                </button>
+                            </div>
                         </>
                     )}
                 </li>

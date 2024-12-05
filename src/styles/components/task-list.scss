@@ -1,0 +1,53 @@
+@import "../variables";
+.todo-task-list{
+	padding: 0 4px 0 0;
+	max-height: 420px;
+	overflow-x: auto;
+	&::-webkit-scrollbar {
+		width: 4px;
+	}
+	
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: #fdfdfd;
+	}
+	
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: #ccc;
+	}
+	
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: #555;
+	}
+	li{
+		list-style: none;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		padding: 8px;
+		background: $white;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 8px;
+	}
+	&__text{
+		cursor: pointer;
+		text-decoration: none;
+		width: 100%;
+		margin-bottom: 8px;
+		&:hover{
+			text-decoration: line-through;
+		}
+		&.done{
+			text-decoration: line-through;
+		}
+	}
+	&__buttons{
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		width: 100%;
+	}
+}

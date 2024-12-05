@@ -9,11 +9,18 @@ const App = () => {
 
   return (
       <TaskProvider>
-        <div>
-          <h1>TODO-приложение</h1>
+        <div className={'todo-block'}>
+          <h2 className={'todo-block__heading'}>TODO-APP</h2>
           <AddTask />
-          <Filter setFilter={setFilter} />
-          <TaskList filter={filter} />
+            <div className="row">
+                <div className="col-9">
+                    <TaskList filter={filter} />
+                </div>
+                <div className="col-3">
+                    <Filter setFilter={setFilter} />
+
+                </div>
+            </div>
         </div>
       </TaskProvider>
   );

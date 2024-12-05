@@ -2,7 +2,6 @@ import React, { createContext, useReducer, useEffect } from "react";
 
 const TaskContext = createContext();
 
-// Reducer function to manage task actions
 const taskReducer = (state, action) => {
     switch (action.type) {
         case "ADD_TASK":
@@ -18,7 +17,7 @@ const taskReducer = (state, action) => {
                 task.id === action.payload.id ? { ...task, text: action.payload.text } : task
             );
         case "SET_TASKS":
-            return action.payload; // Set tasks from localStorage
+            return action.payload;
         default:
             return state;
     }
@@ -36,10 +35,8 @@ const loadTasksFromLocalStorage = () => {
 };
 
 export const TaskProvider = ({ children }) => {
-    // Initialize state with tasks loaded from localStorage
     const [tasks, dispatch] = useReducer(taskReducer, [], loadTasksFromLocalStorage);
 
-    // Save tasks to localStorage whenever the state changes
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);

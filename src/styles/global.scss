@@ -1,0 +1,19 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import "variables";
+body {
+	background: #f0f5f1;
+}
+.btn{
+	color: $white;
+	width: 100%;
+}
+.todo-block{
+	margin: 0 auto;
+	max-width: 720px;
+	padding: 40px;
+	&__heading{
+		font-size: 24px;
+		text-align: center;
+		margin-bottom: 24px;
+	}
+}
