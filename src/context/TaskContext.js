@@ -23,7 +23,7 @@ const taskReducer = (state, action) => {
     }
 };
 
-// Load tasks from localStorage (helper function)
+// Load tasks from localStorage
 const loadTasksFromLocalStorage = () => {
     try {
         const storedTasks = localStorage.getItem("tasks");
